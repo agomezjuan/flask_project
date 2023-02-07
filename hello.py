@@ -5,9 +5,8 @@ from sqlalchemy import create_engine, text
 app = Flask(__name__)
 
 
-# engine = create_engine('sqlite:///test.sqlite', echo=True)
-engine = create_engine(
-    "mysql+pymysql://test:test@localhost:3306/test?charset=utf8mb4")
+engine = create_engine('sqlite:///test.sqlite', echo=True)
+# engine = create_engine("mysql+pymysql://test:test@localhost:3306/test?charset=utf8mb4")
 
 with engine.connect() as conn:
     result = conn.execute(text("select 'hello world'"))
