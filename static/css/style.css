@@ -4,7 +4,8 @@ body {
     font-family: montserrat;    
     height: 100vh;
     overflow: hidden;
-    background-color: #51e2f5;
+    /* background-color: #51e2f5; */    
+    /* background-color: #2f3740; */
    
 }
 
@@ -13,11 +14,25 @@ body {
     top: 50%;
     left:50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 70%;
     background: white;
     border-radius: 10px;
+    display: flex;
+    border: 2px solid #eee;
 
 
+}
+
+.panel-izq {       
+    width: 50%;
+    display: flex;    
+    justify-content: center;
+    align-items:center;
+    
+}
+.panel-der {
+    width: 50%;
+    
 }
 
 .center h1 {
@@ -37,10 +52,11 @@ form .txt_field {
     margin: 30px 0;
 }
 
-.txt_field input {
+.panel-izq input {
     width: 100%;
     padding: 0 5px;
-    height: 40px;
+    margin-bottom: 5px;
+    height: 20px;
  }
 
  .txt_field select {
@@ -48,6 +64,35 @@ form .txt_field {
     padding: 0 5px;
     height: 40px;
  }
+
+ .date-elem {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    border: 1px solid #d3dce3;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    background: #ffffff;
+    padding: calc(8px * 2);
+
+ }
+
+ /*
+
+ .TimeSlotListItem {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: calc(8px * 2);
+    padding: var(--space-2x);
+    margin-bottom: 8px;
+    margin-bottom: var(--space);
+    background-color: #ffffff;
+    background-color: var(--color-white);
+    border: 1px solid #d3dce3;
+    border: 1px solid var(--color-neutral-300);
+    border-radius: 2px;
+ */
 
 
  input[type="submit"]{
