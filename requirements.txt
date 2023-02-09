@@ -7,6 +7,6 @@ Jinja2==3.1.2
 MarkupSafe==2.1.2
 pycodestyle==2.10.0
 PyMySQL==1.0.2
-SQLAlchemy==2.0.2
+Flask_SQLAlchemy==3.0.3
 typing_extensions==4.4.0
 Werkzeug==2.2.2
