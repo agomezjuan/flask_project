@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 
 from models.User import db
 from routes.user import user
+from routes.event import event
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -11,6 +12,7 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 app.register_blueprint(user, url_prefix='/users')
+app.register_blueprint(event, url_prefix='/events')
 
 
 @app.route('/')
@@ -19,6 +21,11 @@ def index():
         ...
 
     return render_template('index.html', guardar=guardar)
+
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 
 # with engine.connect() as conn:
