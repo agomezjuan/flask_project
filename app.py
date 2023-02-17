@@ -1,8 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_migrate import Migrate
+from datetime import datetime
+from utils import format_date
 
 from models.User import db
 from routes.user import user
+from routes.event import event
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -11,6 +14,7 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 app.register_blueprint(user, url_prefix='/users')
+app.register_blueprint(event, url_prefix='/events')
 
 
 @app.route('/')
@@ -21,33 +25,41 @@ def index():
     return render_template('index.html', guardar=guardar)
 
 
-# with engine.connect() as conn:
-#     result = conn.execute(text("select 'hello world'"))
-#     print(result.all())
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
-# with engine.connect() as conn:
-#     conn.execute(text("CREATE TABLE some_table (x int, y int)"))
-#     conn.execute(
-#         text("INSERT INTO some_table (x, y) VALUES (:x, :y)"),
-#         [{"x": 1, "y": 1}, {"x": 2, "y": 4}],
-#     )
-#     conn.commit()
 
-# with engine.begin() as conn:
-#     conn.execute(
-#         text("INSERT INTO some_table (x, y) VALUES (:x, :y)"),
-#         [{"x": 6, "y": 8}, {"x": 9, "y": 10}],
-#     )
-
-# with engine.connect() as conn:
-#     result = conn.execute(text("SELECT x, y FROM some_table"))
-#     for row in result:
-#         print(f"x: {row.x}  y: {row.y}")
+dates = []
 
 
 @ app.route('/hello')
 def hello():
     return 'Hello, World'
+
+
+@ app.route('/selection')
+def selection():
+    today = datetime.now()
+    selected_dates = dates
+
+    def borrar():
+        ...
+
+    context = {
+        'today': today,
+        'dates': selected_dates,
+        'formatear_fecha': format_date.formatear_fecha,
+        'delete': borrar
+    }
+    return render_template('selection.html', context=context)
+
+
+@app.route('/add_date', methods=['POST'])
+def agregar_fecha():
+    fecha = request.form['eventdate']
+    dates.append(fecha)
+    return redirect('/selection')
 
 
 if __name__ == '__main__':

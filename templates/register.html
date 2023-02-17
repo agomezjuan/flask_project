@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+<!-- 
+ -->
+{% block title %}
+{{ super() }} Registro
+{% endblock %}
+<!-- 
+ -->
+{% block content %}
+<div class="center">
+    <form action="/users/signup" method="POST">
+        <h1>Registro</h1>
+        <div class="txt_field">
+            <label for="name">
+                <input type="text" name="name" id="name" placeholder="Nombre">
+            </label>
+        </div>
+        <div class="txt_field">
+            <label for="email">
+                <input type="email" name="email" id="email" placeholder="Email">
+            </label>
+        </div>
+        <div class="txt_field">
+            <label for="password">
+                <input type="password" name="password" id="password" placeholder="Password">
+            </label>
+        </div>
+        <input type="submit" value="Registro">
+    </form>
+</div>
+{% endblock %}

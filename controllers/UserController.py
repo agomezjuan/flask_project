@@ -20,13 +20,13 @@ def signup():
 
     if not all([name, email, password]):
         flash('All fields are required')
-        return redirect(url_for('user.create'))
+        return redirect(url_for('register'))
 
     # Hash password
     password = generate_password_hash(password)
 
     # Create user
-    user = User(name=name, email=email, password=password)
+    user = User(username=name, email=email, password=password)
     try:
         db.session.add(user)
         db.session.commit()
@@ -34,7 +34,7 @@ def signup():
         return redirect(url_for('user.index'))
     except Exception as e:
         flash('An error occurred while creating the user')
-        return redirect(url_for('user.signup'))
+        return redirect(url_for('register'))
 
 
 def login():
@@ -43,7 +43,7 @@ def login():
 
     if not all([email, password]):
         flash('All fields are required')
-        return redirect(url_for('user.create'))
+        return redirect(url_for('user.login'))
 
     user = User.query.filter_by(email=email).first()
 
